@@ -1,0 +1,218 @@
+<html>
+
+<body background-color="white">
+	<form>
+		<p id="j1"> X Joueur 1 </p>
+		<p id="j2"> O Joueur 2</p>
+		<center><table >
+			<tr>
+				<td>
+					<input type="button" id="11" value="  "/>
+				</td>
+				<td>
+					<input type="button" id="12" value="  "/>
+				</td>
+				<td>
+					<input type="button" id="13" value="  "/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" id="21" value="  "/>
+				</td>
+				<td>
+					<input type="button" id="22" value="  "/>
+				</td>
+				<td>
+					<input type="button" id="23" value="  "/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" id="31" value="  "/>
+				</td>
+				<td>
+					<input type="button" id="32" value="  "/>
+				</td>
+				<td>
+					<input type="button" id="33" value="  " />
+				</td>
+			</tr>
+		</table><input type="button" id="rejouer" value="Rejouer" /></center>
+	
+			 <script src="jquery.js"></script>
+ <script>
+ $(function() {
+ $('table,tr,td').css('border','black solid 2px')
+  $('table,tr,td').css('border-collapse','collapse')
+   $(':button').css('font-size','25px')
+   $('#j1').css('color','red');
+   $('#j2').css('color','blue');
+   $('#j1,#j2').css('font-size','30px');
+ 
+   function vide()
+	{for(l=1;l<4;l++)
+		for(c=0;c<4;c++)
+			$('#'+l+c).val('  ');
+			
+	}
+   var i=1; 
+	function remp(x){
+		if(i%2==0)
+			{$(x).val('O');}
+		else $(x).val('X');
+		i=i+1;}
+	
+	function test(x){
+		if($(x).val()=='  ')
+		remp(x);}	
+
+//******************************		
+function verifdd(){
+var l;
+var k1=0;
+var k2=0;
+for(l=1;l<4;l++)
+	{if($('#'+l+l).val()!='  ')
+		if($('#'+l+l).val()=='X')
+				k1=k1+1;
+				else
+				k2=k2+1;}
+	if(k1==3)alert('joueur 1 vous avez gagné');
+	else if(k2==3)alert('joueur 2 vous avez gagné');}
+
+
+function verifdg(){
+var l;
+var k1=0;j=1;k2=0;
+for(l=3;l>0;l--)
+	{if($('#'+j+l).val()!='  ')
+		if($('#'+j+l).val()=='X')
+				k1=k1+1;
+				else 
+				k2=k2+1;
+				j=j+1;
+				}
+				
+	if(k1==3)alert('joueur 1 vous avez gagné');
+	else if(k2==3)alert('joueur 2 vous avez gagné')}
+	
+	
+function verifl(){
+l=1;
+do
+{	k1=0;k2=0;
+	for(c=1;c<4;c++)
+	{
+		if($('#'+l+c).val()=='X')
+			k1=k1+1;
+			else
+			if($('#'+l+c).val()=='O')
+			k2=k2+1;
+		
+		if(c==3)
+			if(k1<3)
+				l=l+1;
+			else
+			if(k2<3)
+				l=l+1;
+	}
+	
+}while(l<4 && k1<3 && k2<3 );
+if(k1==3)alert('joueur 1 vous avez gagné');
+	else
+		if(k2==3)alert('joueur 2 vous avez gagné');
+}
+
+
+function verifc(){
+c=1;
+do
+{	k1=0;k2=0;
+	for(l=1;l<4;l++)
+	{
+		if($('#'+l+c).val()=='X')
+			k1=k1+1;
+			else
+		if($('#'+l+c).val()=='O')
+			k2=k2+1;
+			
+		if(l==3)
+			if(k1<3)
+				c=c+1;
+			else
+			if(k2<3)
+				c=c+1;
+	}
+	
+}while(c<4 && k1<3 && k2<3 );
+if(k1==3)alert('joueur 1 vous avez gagné');
+	else
+		if(k2==3)alert('joueur 2 vous avez gagné');
+}
+/*	if($('#13').val()=='X')
+		if($('#22').val()=='X')	
+			if($('#31').val()=='X')
+			    alert('j2');*/
+	
+//*****************************************			
+ $('#11').click(function(){
+		test('#11');
+		verifl();
+		verifc();
+		});
+	
+$('#12').click(function(){
+	test('#12');
+	verifc();
+	});
+	
+ $('#13').click(function(){
+	test('#13');
+	verifl();
+	verifc();});
+
+$('#21').click(function(){
+	test('#21');
+	verifl();
+	});
+	
+$('#22').click(function(){
+	test('#22');
+	});
+	
+$('#23').click(function(){
+	test('#23');
+	verifl();
+	});
+	
+$('#31').click(function(){
+	test('#31');
+	verifdg();
+	verifl();
+	verifc();
+	});
+	
+$('#32').click(function(){
+	test('#32');
+	verifc();
+	});
+	
+ $('#33').click(function(){
+	test('#33');
+	verifdd();
+	verifl();
+	verifc();
+	});	
+
+$('#rejouer').click(function(){
+vide();
+i=1;
+	});
+	
+});
+
+
+  </script>
+</body>
+</html>
